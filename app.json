@@ -1,0 +1,7 @@
+{
+  "name": "ManyWho Huddle Service",
+  "description": "A plugin that enables integration of Huddle into ManyWho Flows",
+  "repository": "https://github.com/manywho/service-huddle",
+  "logo": "https://s3.amazonaws.com/manywho-service-assets/icons/service-huddle.png",
+  "keywords": ["manywho", "huddle", "plugin", "workflow"]
+}
