@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<project name="manywho-service" basedir="." default="generate-properties">
+    <target name="generate-properties" description="Generate the properties file from the given system properties">
+        <propertyfile file="src/main/resources/service.properties">
+            <entry key="oauth2.clientId" value="${oauth2.clientId}"/>
+        </propertyfile>
+    </target>
+</project>
