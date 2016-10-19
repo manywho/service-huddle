@@ -17,7 +17,10 @@ The service is compatible with Heroku, and can be deployed by clicking the butto
 
 ### Locally
 
-To build the service, you will need to have Apache Ant, Maven 3 and a Java 8 implementation installed, OpenJDK or Oracle JDK.
+To build the service, you will need to have Apache Ant, Maven 3 and a Java 8 implementation installed (OpenJDK or Oracle
+JDK are both fine). 
+
+#### Configuration
 
 You will need to generate a configuration file for the service by running the provided `build.xml` script with Ant, and 
 passing in some valid settings:
@@ -26,7 +29,13 @@ passing in some valid settings:
 $ ant -Doauth2.clientId=xxx
 ```
 
-Now you can build the runnable shaded JAR.
+#### Building
+
+Now you can build the runnable shaded JAR using Maven:
+
+```bash
+$ mvn package
+```
 
 #### Defaults
 
