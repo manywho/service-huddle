@@ -68,15 +68,41 @@ public class HuddleClient {
         }
     }
 
-    public Folder loadFolder(String id) {
-        HttpGet request = new HttpGet("https://api.huddle.net/files/folders/" + id);
+    public Folder createFolder(String parent, String title, String description) {
+        JSONObject body = new JSONObject();
+        body.put("title", title);
+        body.put("description", description);
+
+        HttpEntity entity = new StringEntity(body.toString(), Charsets.UTF_8);
+
+        HttpPost request = new HttpPost("https://api.huddle.net/files/folders/" + parent);
+        request.addHeader("Authorization", "OAuth2 " + accessToken);
+        request.addHeader("Content-Type", "application/vnd.huddle.data+json");
+        request.setEntity(entity);
+
+        try {
+            return executeWithResponse(request, Folder.class);
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to create a new folder on Huddle", e);
+        }
+    }
+
+    public Folder loadFolder(String workspace, String id) {
+        HttpGet request;
+
+        if (id.equals("0")) {
+            request = new HttpGet("https://api.huddle.net/files/workspaces/" + workspace + "/folders/root");
+        } else {
+            request = new HttpGet("https://api.huddle.net/files/folders/" + id);
+        }
+
         request.addHeader("Accept", "application/vnd.huddle.data+json");
         request.addHeader("Authorization", "OAuth2 " + accessToken);
 
         try {
             return executeWithResponse(request, Folder.class);
         } catch (IOException e) {
-            throw new RuntimeException("Unable to get the current user from Huddle", e);
+            throw new RuntimeException("Unable to get the folder from Huddle", e);
         }
     }
 

@@ -36,7 +36,7 @@ public class FileManager {
 
     public ObjectDataResponse loadFiles(AuthenticatedWho user, FileDataRequest fileDataRequest) {
         Folder folder = huddleClientFactory.create(user.getToken())
-                .loadFolder(fileDataRequest.getResourcePath());
+                .loadFolder(null, fileDataRequest.getResourcePath());
 
         ObjectCollection files = folder.getDocuments().stream()
                 .map(this::createFileObject)

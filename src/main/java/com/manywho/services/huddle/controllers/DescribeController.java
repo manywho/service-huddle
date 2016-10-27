@@ -1,8 +1,10 @@
 package com.manywho.services.huddle.controllers;
 
 import com.manywho.sdk.entities.describe.DescribeServiceResponse;
+import com.manywho.sdk.entities.describe.DescribeValue;
 import com.manywho.sdk.entities.run.elements.config.ServiceRequest;
 import com.manywho.sdk.entities.translate.Culture;
+import com.manywho.sdk.enums.ContentType;
 import com.manywho.sdk.services.describe.DescribeServiceBuilder;
 
 import javax.ws.rs.Consumes;
@@ -21,6 +23,7 @@ public class DescribeController {
                 .setProvidesIdentity(true)
                 .setProvidesLogic(true)
                 .setCulture(new Culture("EN", "US"))
+                .addConfigurationValue(new DescribeValue("Workspace ID", ContentType.String, true))
                 .createDescribeService()
                 .createResponse();
     }
