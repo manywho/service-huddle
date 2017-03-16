@@ -10,6 +10,7 @@ public class FolderType {
     public final static String NAME = "Folder";
 
     @Id
+    @TypeProperty(name = "ID", contentType = ContentType.String)
     private String id;
 
     @TypeProperty(name = "Title", contentType = ContentType.String)
